@@ -25,7 +25,6 @@ github-repo-explorer
 │   │   ├── UserRepoAccordion/ 
 │   ├── services/
 │   │   ├── api.ts              
-│   ├── tests/
 │   ├── types/                  
 │   ├── App.tsx                 
 │── public/
