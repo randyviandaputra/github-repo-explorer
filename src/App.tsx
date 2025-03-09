@@ -12,17 +12,17 @@ const App: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   const [username, setUsername] = useState<string>("");
 
-  const { data: users, refetch, isLoading: isLoadingUsers, error: usersError } = useQuery<User[]>(
-    ["users", username],
-    () => fetchUsers(username),
-    { enabled: !!username }
-  );
+  const { data: users, refetch, isLoading: isLoadingUsers, error: usersError } = useQuery<User[]>({
+    queryKey: ["users", username],
+    queryFn: () => fetchUsers(username),
+    enabled: !!username,
+  });
 
-  const { data: repositories, isLoading: isLoadingRepos, error: reposError } = useQuery<Repo[]>(
-    ["repos", selectedUser],
-    () => fetchRepositories(selectedUser!),
-    { enabled: !!selectedUser }
-  );
+  const { data: repositories, isLoading: isLoadingRepos, error: reposError } = useQuery<Repo[]>({
+    queryKey: ["repos", selectedUser],
+    queryFn: () => fetchRepositories(selectedUser!),
+    enabled: !!selectedUser,
+  });
 
   const onSearch = ({ username }: { username: string }) => {
     setUsername(username);
